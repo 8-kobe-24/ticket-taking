@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.awesome.team.ticket.mapper.sync.TblDocStockMapper">
+
+<!--    <select id="selectTblDocStockList" resultType="com.awesome.team.ticket.entity.sync.TblDocStock">-->
+<!--        select * from (select * from Tbl_Doc_Stock order by Batch_ID offset ${_page}*${_pagesize} row fetch next ${_pagesize} row only) as b order by Batch_ID ASC-->
+<!--    </select>-->
+
+    <select id="selectTblDocStockList" resultType="com.awesome.team.ticket.entity.sync.TblDocStock">
+        select * from (select ROW_NUMBER() OVER(Order by Batch_ID) AS RowNumber, * from Tbl_Doc_Stock) as b
+        where b.RowNumber BETWEEN <![CDATA[(${_page} * ${_pagesize} + 1)]]> and <![CDATA[(${_page} + 1) * ${_pagesize}]]> order by Batch_ID ASC
+    </select>
+</mapper>

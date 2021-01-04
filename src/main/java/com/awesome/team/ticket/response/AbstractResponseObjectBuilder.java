@@ -1,7 +1,7 @@
 package com.awesome.team.ticket.response;
 
 
-import com.awesome.team.ticket.IResponseCode;
+import com.awesome.team.ticket.enums.IResponseCode;
 
 /**
  * 响应构造器

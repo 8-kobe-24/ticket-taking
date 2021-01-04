@@ -1,6 +1,6 @@
 package com.awesome.team.ticket.exception;
 
-import com.awesome.team.ticket.IResponseCode;
+import com.awesome.team.ticket.enums.IResponseCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,7 @@
 package com.awesome.team.ticket;
 
+import com.awesome.team.ticket.entity.sync.TblDocStock;
+import com.awesome.team.ticket.service.sync.TblDocStockService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RSortedSet;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootTest(classes = TicketApplication.class)
@@ -30,6 +33,22 @@ class TicketApplicationTests {
         long t2 = System.currentTimeMillis();
         System.out.println(t2 - t1);
         Assert.assertNotNull(t2 - t1);
+    }
+
+    @Resource
+    private TblDocStockService tblDocStockService;
+
+    @Test
+    public void testGetList() {
+        long t1 = System.currentTimeMillis();
+        List<TblDocStock> list = tblDocStockService.list();
+        long t2 = System.currentTimeMillis();
+        System.out.println(t2 - t1);
+    }
+
+    @Test
+    public void testJob() throws Exception {
+        tblDocStockService.syncData();
     }
 
 }

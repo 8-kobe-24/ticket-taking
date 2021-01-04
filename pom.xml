@@ -26,6 +26,7 @@
         <mybatis.plus.version>3.4.1</mybatis.plus.version>
         <powermock.version>2.0.9</powermock.version>
         <xxl.job.version>2.2.0</xxl.job.version>
+        <sqlserver.version>4.0</sqlserver.version>
     </properties>
 
     <dependencies>
@@ -121,6 +122,17 @@
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>
             <version>${xxl.job.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>${sqlserver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
         </dependency>
 
     </dependencies>

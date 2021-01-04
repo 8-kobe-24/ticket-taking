@@ -5,6 +5,24 @@ spring:
     host: xinlinshou.top
     port: 6379
     password: jun13622221342
+  datasource:
+    url: jdbc:sqlserver://129.204.177.187:1433;DatabaseName=stock
+    username: sa
+    password: CJY@3296406apple
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  batch:
+    reader:
+      chunk-size: 3
+      page-size: 5000
+    job:
+      enabled: false
 xxl:
   job:
     admin: http://127.0.0.1:8080/xxl-job-admin
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: id_worker_str
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

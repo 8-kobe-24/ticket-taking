@@ -8,6 +8,6 @@
 
     <select id="selectTblDocStockList" resultType="com.awesome.team.ticket.entity.sync.TblDocStock">
         select * from (select ROW_NUMBER() OVER(Order by Batch_ID) AS RowNumber, * from Tbl_Doc_Stock) as b
-        where b.RowNumber BETWEEN <![CDATA[(${_page} * ${_pagesize} + 1)]]> and <![CDATA[(${_page} + 1) * ${_pagesize}]]> order by Batch_ID ASC
+        where b.RowNumber BETWEEN <![CDATA[(${_page} * ${_pagesize} + 1)]]> and <![CDATA[(${_page} + 1) * ${_pagesize}]]> and b.RowNumber > ${_skiprows} order by Batch_ID ASC
     </select>
 </mapper>

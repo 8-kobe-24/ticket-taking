@@ -1,9 +1,11 @@
 package com.awesome.team.ticket.processor;
 
 import org.springframework.batch.item.ItemProcessor;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * @author 陈建业
@@ -18,7 +20,10 @@ public abstract class CommonProcessor<I, O> implements ItemProcessor<I, O> {
     @PostConstruct
     public void init() {
         input = (Class<I>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        output = (Class<O>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+//        output = (Class<O>) (((ParameterizedTypeImpl) getClass().getGenericSuperclass()).getActualTypeArguments()[1]);
+        Type[] types = ((ParameterizedTypeImpl) getClass().getGenericSuperclass()).getActualTypeArguments();
+        output = (Class<O>) types[0];
+        System.out.println(output);
     }
 
     @Override

@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -101,7 +102,7 @@ public class SpringBatchConfig extends DefaultBatchConfigurer {
     @Bean
     public Step syncStep() {
         return stepBuilderFactory.get(SYNC_STEP)
-                .<TblDocStock, TicketPool>chunk(chunkSize)
+                .<TblDocStock, List<TicketPool>>chunk(chunkSize)
                 .reader(ticketReader())
                 .processor(syncProcessor)
                 .writer(ticketWriter())
@@ -121,7 +122,7 @@ public class SpringBatchConfig extends DefaultBatchConfigurer {
 
     @Bean
     @StepScope
-    public CommonMybatisItemWriter<TicketPool> ticketWriter() {
+    public CommonMybatisItemWriter<List<TicketPool>> ticketWriter() {
         String queryId = TicketPoolMapper.class.getName()  + ".insert" + TicketPool.class.getSimpleName();
         return new CommonMybatisItemWriter<>(sqlSessionFactory, queryId);
     }

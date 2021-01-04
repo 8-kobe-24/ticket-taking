@@ -6,8 +6,11 @@
 <!--        select * from (select * from Tbl_Doc_Stock order by Batch_ID offset ${_page}*${_pagesize} row fetch next ${_pagesize} row only) as b order by Batch_ID ASC-->
 <!--    </select>-->
 
+<!--    <select id="selectTblDocStockList" resultType="com.awesome.team.ticket.entity.sync.TblDocStock">-->
+<!--        select * from (select ROW_NUMBER() OVER(Order by Batch_ID) AS RowNumber, * from Tbl_Doc_Stock) as b-->
+<!--        where b.RowNumber BETWEEN <![CDATA[(${_page} * ${_pagesize} + 1)]]> and <![CDATA[(${_page} + 1) * ${_pagesize}]]> and b.RowNumber > ${_skiprows} order by Batch_ID ASC-->
+<!--    </select>-->
     <select id="selectTblDocStockList" resultType="com.awesome.team.ticket.entity.sync.TblDocStock">
-        select * from (select ROW_NUMBER() OVER(Order by Batch_ID) AS RowNumber, * from Tbl_Doc_Stock) as b
-        where b.RowNumber BETWEEN <![CDATA[(${_page} * ${_pagesize} + 1)]]> and <![CDATA[(${_page} + 1) * ${_pagesize}]]> and b.RowNumber > ${_skiprows} order by Batch_ID ASC
+        SELECT * FROM (SELECT TOP (${_page + 1} * ${_pagesize}) *, ROW_NUMBER() OVER (ORDER BY Batch_ID ASC) row FROM Tbl_Doc_Stock) t WHERE t.row > ${_skiprows}
     </select>
 </mapper>

@@ -18,7 +18,7 @@ public class TicketPool extends Model<TicketPool> {
     /**
      * 主键ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 批次ID

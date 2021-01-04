@@ -12,8 +12,8 @@ spring:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   batch:
     reader:
-      chunk-size: 5
-      page-size: 5000
+      chunk-size: 10
+      page-size: 100
     job:
       enabled: false
 xxl:

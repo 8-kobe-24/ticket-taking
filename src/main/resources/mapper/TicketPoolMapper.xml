@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.awesome.team.ticket.mapper.sync.TicketPoolMapper">
+    
+    <sql id="BaseColumn">
 
-    <select id="insertTicketPool" parameterType="java.util.List">
+    </sql>
 
-    </select>
+    <insert id="insertTicketPool" parameterType="java.util.List">
+
+        <foreach collection="list" item="ticket" separator =";">
+            insert into ticket_pool(batch_id,agent_iata,awb_prefix,awb_postfix,awb_type,ticket_no,agent_code,operate_date,ticket_period,start_no,end_no,ticket_count,id)
+            values (#{ticket.batchId}, #{ticket.agentIATA}, #{ticket.awbPrefix}, #{ticket.awbPostfix},
+                                            #{ticket.awbType}, #{ticket.ticketNo}, #{ticket.agentCode}, #{ticket.operateDate},
+                                            #{ticket.ticketPeriod}, #{ticket.startNo}, #{ticket.endNo}, #{ticket.ticketCount}, #{ticket.id});
+        </foreach>
+    </insert>
 </mapper>

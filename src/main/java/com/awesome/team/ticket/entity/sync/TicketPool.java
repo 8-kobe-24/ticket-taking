@@ -28,18 +28,18 @@ public class TicketPool extends Model<TicketPool> {
     /**
      * IATA
      */
-    @TableField(value = "AgentIATA")
+    @TableField(value = "agent_iata")
     private String agentIATA;
 
     /**
      * 前缀
      */
-    private String  awbPrefix;
+    private String awbPrefix;
 
     /**
      * 后缀
      */
-    private String  awbPostfix;
+    private String awbPostfix;
 
     /**
      * 票证类型

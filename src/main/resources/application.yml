@@ -16,9 +16,6 @@ spring:
       page-size: 100
     job:
       enabled: false
-xxl:
-  job:
-    admin: http://127.0.0.1:8080/xxl-job-admin
 mybatis-plus:
   global-config:
     db-config:
